@@ -12,6 +12,7 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
 4. [Pagos expirados](#4-pagos-expirados)
 5. [Pagos con numeros no vinculados](#5-pagos-con-número-que-no-tiene-cuenta-nequi)
 6. [Servicio de reverso](#6-uso-del-servicio-de-reverso-de-pagos)
+7. [Experiencia de usuario](#7-experiencia-de-usuario)
 
 ---
 
@@ -190,7 +191,7 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
   - **Estado del Pago**: `35`
 
   - **Comprobante**:
-    ![comprobante](comprobante.jpeg)
+    ![comprobante](images/comprobante.jpeg)
 
 ---
 
@@ -828,3 +829,17 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
   ```
 
 ---
+
+## 7. Experiencia de usuario
+
+- ### Elegir metodo de pago
+
+  ![metodo_pago](images/metodo_pago.jpeg)
+
+- ### Rellenar datos requeridos
+
+  ![datos](images/datos_requerios.jpeg)
+
+- ### Espera de confirmacion
+  
+  ![confirmacion](images/confirmacion_pago.jpeg)
