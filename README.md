@@ -348,8 +348,6 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
 
 ## 4. Pagos expirados
 
-> **Nota:** En este caso, verificamos el estado de la transacción a los 3 minutos. Si el usuario no ha aceptado ni cancelado la notificación, el sistema cancela automáticamente la notificación y el pago.
-
 - ### **Solicitud de notificación push**
 
   ### URL
@@ -363,8 +361,8 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
     "RequestMessage":{
       "RequestHeader":{
         "Channel":"PNP04-C001",
-        "RequestDate":"2025-01-20T14:36:16Z",
-        "MessageID":"hDKdPl6lr3",
+        "RequestDate":"2025-01-20T21:49:10Z",
+        "MessageID":"khHWnqdl1N",
         "ClientID":"12345",
         "Destination":{
           "ServiceName":"PaymentsService",
@@ -398,12 +396,12 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
       "ResponseMessage":{
         "ResponseHeader":{
           "Channel":"PNP04-C001",
-          "ResponseDate":"2025-01-20T14:36:25.861Z",
+          "ResponseDate":"2025-01-20T21:49:14.290Z",
           "Status":{
             "StatusCode":"0",
             "StatusDesc":"SUCCESS"
           },
-          "MessageID":"hDKdPl6lr3",
+          "MessageID":"khHWnqdl1N",
           "ClientID":"12345",
           "Destination":{
             "ServiceName":"PaymentsService",
@@ -415,7 +413,7 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
         "ResponseBody":{
           "any":{
             "unregisteredPaymentRS":{
-              "transactionId":"350-12345-36517011-hDKdPl6lr3"
+              "transactionId":"350-12345-36517011-khHWnqdl1N"
             }
           }
         }
@@ -423,7 +421,7 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
     }
     ```
 
-  - **ID de Transacción**: `350-12345-36517011-hDKdPl6lr3`
+  - **ID de Transacción**: `350-12345-36517011-khHWnqdl1N`
 
 - ### **Consultando Estado del Pago**
 
@@ -438,8 +436,8 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
     "RequestMessage":{
       "RequestHeader":{
         "Channel":"PNP04-C001",
-        "RequestDate":"2025-01-20T14:39:28Z",
-        "MessageID":"Ge2yZqpwtp",
+        "RequestDate":"2025-01-20T22:04:16Z",
+        "MessageID":"zOuwYK1y4o",
         "ClientID":"12345",
         "Destination":{
           "ServiceName":"PaymentsService",
@@ -451,7 +449,7 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
       "RequestBody":{
         "any":{
           "getStatusPaymentRQ":{
-            "codeQR":"350-12345-36517011-hDKdPl6lr3"
+            "codeQR":"350-12345-36517011-khHWnqdl1N"
           }
         }
       }
@@ -468,12 +466,12 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
       "ResponseMessage":{
         "ResponseHeader":{
           "Channel":"PNP04-C001",
-          "ResponseDate":"2025-01-20T14:39:32.752Z",
+          "ResponseDate":"2025-01-20T22:04:21.722Z",
           "Status":{
-            "StatusCode":"0",
-            "StatusDesc":"SUCCESS"
+            "StatusCode":"10-454",
+            "StatusDesc":"La transacción ya caducó"
           },
-          "MessageID":"Ge2yZqpwtp",
+          "MessageID":"zOuwYK1y4o",
           "ClientID":"12345",
           "Destination":{
             "ServiceName":"PaymentsService",
@@ -484,92 +482,14 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
         },
         "ResponseBody":{
           "any":{
-            "getStatusPaymentRS":{
-              "date":"Enero 20 - 2025 | 09:36 AM",
-              "trnId":"350-12345-36517011-hDKdPl6lr3",
-              "originMoney":[
 
-              ],
-              "name":"EL RANCHERO1",
-              "ipAddress":"N/A",
-              "value":"5950",
-              "status":"33"
-            }
           }
         }
       }
     }
     ```
 
-  - **Estado del Pago**: `33`
-
-- ### **Cancelar pago pendiente**
-  
-  ### URL
-
-  `https://api.sandbox.nequi.com/payments/v2/-services-paymentservice-cancelunregisteredpayment`
-
-  ### Cuerpo de la solicitud
-
-  ```json
-  {
-    "RequestMessage":{
-      "RequestHeader":{
-        "Channel":"PNP04-C001",
-        "RequestDate":"2025-01-20T14:39:34Z",
-        "MessageID":"fyTsYY65zK",
-        "ClientID":"12345",
-        "Destination":{
-          "ServiceName":"PaymentsService",
-          "ServiceOperation":"unregisteredPayment",
-          "ServiceRegion":"C001",
-          "ServiceVersion":"1.0.0"
-        }
-      },
-      "RequestBody":{
-        "any":{
-          "cancelUnregisteredPaymentRQ":{
-            "code":"NIT_1",
-            "phoneNumber":"3560567253",
-            "transactionId":"350-12345-36517011-hDKdPl6lr3"
-          }
-        }
-      }
-    }
-  }
-  ```
-
-  ### Respuesta obtenida
-
-  ```json
-  {
-    "ResponseMessage":{
-      "ResponseHeader":{
-        "Channel":"PNP04-C001",
-        "ResponseDate":"2025-01-20T14:39:41.899Z",
-        "Status":{
-          "StatusCode":"0",
-          "StatusDesc":"SUCCESS"
-        },
-        "MessageID":"fyTsYY65zK",
-        "ClientID":"12345",
-        "Destination":{
-          "ServiceName":"PaymentsService",
-          "ServiceOperation":"unregisteredPayment",
-          "ServiceRegion":"C001",
-          "ServiceVersion":"1.0.0"
-        }
-      },
-      "ResponseBody":{
-        "any":{
-          "cancelRequestMoneyRS":{
-            
-          }
-        }
-      }
-    }
-  }
-  ```
+  - **Estado del Pago**: `10-454`
 
 ---
 
@@ -665,8 +585,8 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
     "RequestMessage":{
       "RequestHeader":{
         "Channel":"PNP04-C001",
-        "RequestDate":"2025-01-20T15:27:12Z",
-        "MessageID":"eC6gb3UGmT",
+        "RequestDate":"2025-01-21T14:00:14Z",
+        "MessageID":"7XevoVtH5a",
         "ClientID":"12345",
         "Destination":{
           "ServiceName":"PaymentsService",
@@ -700,12 +620,12 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
       "ResponseMessage":{
         "ResponseHeader":{
           "Channel":"PNP04-C001",
-          "ResponseDate":"2025-01-20T15:27:23.734Z",
+          "ResponseDate":"2025-01-21T14:00:26.235Z",
           "Status":{
             "StatusCode":"0",
             "StatusDesc":"SUCCESS"
           },
-          "MessageID":"eC6gb3UGmT",
+          "MessageID":"7XevoVtH5a",
           "ClientID":"12345",
           "Destination":{
             "ServiceName":"PaymentsService",
@@ -717,7 +637,7 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
         "ResponseBody":{
           "any":{
             "unregisteredPaymentRS":{
-              "transactionId":"350-12345-36517011-eC6gb3UGmT"
+              "transactionId":"350-12345-36517011-7XevoVtH5a"
             }
           }
         }
@@ -725,7 +645,7 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
     }
     ```
 
-  - **ID de Transacción**: `350-12345-36517011-eC6gb3UGmT`
+  - **ID de Transacción**: `350-12345-36517011-7XevoVtH5a`
 
 - ### **Consultando Estado del Pago**
 
@@ -740,8 +660,8 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
     "RequestMessage":{
       "RequestHeader":{
         "Channel":"PNP04-C001",
-        "RequestDate":"2025-01-20T15:30:26Z",
-        "MessageID":"S9T4B6hI8R",
+        "RequestDate":"2025-01-21T14:03:28Z",
+        "MessageID":"fM2xrJ9clv",
         "ClientID":"12345",
         "Destination":{
           "ServiceName":"PaymentsService",
@@ -753,7 +673,7 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
       "RequestBody":{
         "any":{
           "getStatusPaymentRQ":{
-            "codeQR":"350-12345-36517011-eC6gb3UGmT"
+            "codeQR":"350-12345-36517011-7XevoVtH5a"
           }
         }
       }
@@ -777,7 +697,7 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
   
   ### URL
 
-  `https://api.sandbox.nequi.com/-services-reverseservices-reversetransaction`
+  `https://api.sandbox.nequi.com/payments/v2/-services-reverseservices-reversetransaction`
 
   ### Cuerpo de la solicitud
 
@@ -786,8 +706,8 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
     "RequestMessage":{
       "RequestHeader":{
         "Channel":"PNP04-C001",
-        "RequestDate":"2025-01-20T15:30:29Z",
-        "MessageID":"M4chjgE9qa",
+        "RequestDate":"2025-01-21T14:03:32Z",
+        "MessageID":"mfqB2lijuZ",
         "ClientID":"12345",
         "Destination":{
           "ServiceName":"ReverseServices",
@@ -802,7 +722,7 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
             "phoneNumber":"3560567253",
             "value":"5950",
             "code":"NIT_1",
-            "messageId":"eC6gb3UGmT",
+            "messageId":"7XevoVtH5a",
             "type":"payment"
           }
         }
@@ -815,19 +735,48 @@ Documentación de la integración de Fleteo con Nequi para pagos en línea.
 
   ```json
   {
-    "message": "Forbidden",
-    "headers": {
+    "ResponseMessage": {
+      "ResponseHeader": {
+        "Channel": "PNP04-C001",
+        "ResponseDate": "2025-01-21T14:03:37.535Z",
+        "Status": {
+          "StatusCode": "0",
+          "StatusDesc": "SUCCESS"
+        },
+        "MessageID": "mfqB2lijuZ",
+        "ClientID": "12345",
+        "Destination": {
+          "ServiceName": "ReverseServices",
+          "ServiceOperation": "reverseTransaction",
+          "ServiceRegion": "C001",
+          "ServiceVersion": "1.0.0"
+        }
+      },
+      "ResponseBody": {
+        "any": {
+          "reversionRS": {}
+        }
+      }
+    },
+    "Headers": {
       "content-type": ["application/json"],
-      "content-length": ["24"],
+      "content-length": ["378"],
       "connection": ["close"],
-      "date": ["Mon, 20 Jan 2025 15:30:29 GMT"],
-      "x-amz-apigw-id": ["EsXTZEprIAMEFQw="],
-      "x-amzn-requestid": ["4ad2f5b0-5818-4fb8-a3b3-808e1f0b0671"],
-      "x-amzn-errortype": ["ForbiddenException"],
-      "x-cache": ["Error from cloudfront"],
-      "via": ["1.1 b18bcd54d0f77ca53d7c0ba4b9e54284.cloudfront.net (CloudFront)"],
+      "date": ["Tue, 21 Jan 2025 14:03:37 GMT"],
+      "x-amzn-trace-id": [
+        "Root=1-678fa934-75ced580662766663ec6e042;Parent=49fe79d4a08c62cc;Sampled=0;Lineage=1:0ad258a9:0"
+      ],
+      "x-amzn-requestid": ["7aa6d893-6025-4302-ad3a-961fd535c900"],
+      "access-control-allow-origin": ["*"],
+      "x-amz-apigw-id": ["EvdgMFPgIAMEuJw="],
+      "x-cache": ["Miss from cloudfront"],
+      "via": [
+        "1.1 4e6e9c8ad6e40529a0e7659f2f4c5f28.cloudfront.net (CloudFront)"
+      ],
       "x-amz-cf-pop": ["IAD89-P2"],
-      "x-amz-cf-id": ["CwCKbuB7SGgneN2k_3hyR9kWNWQTMJSH4xtOz6JJ7rJbE_06HYNUJg=="]
+      "x-amz-cf-id": [
+        "HCGE27dA_h7HDiVWKP3rcHtNCmw_3olhKDoP2m3spVtbKt4BNN-hYw=="
+      ]
     }
   }
   ```
